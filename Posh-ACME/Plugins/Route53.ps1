@@ -18,6 +18,8 @@ function Add-DnsTxt {
         [string]$R53ProfileName,
         [Parameter(ParameterSetName='IAMRole',Mandatory)]
         [switch]$R53UseIAMRole,
+        [Parameter(ParameterSetName='EnvironmentVars',Mandatory)]
+        [switch]$R53UseEnvironmentVars,
         [Parameter(ValueFromRemainingArguments)]
         $ExtraParams
     )
@@ -156,6 +158,8 @@ function Remove-DnsTxt {
         [string]$R53ProfileName,
         [Parameter(ParameterSetName='IAMRole',Mandatory)]
         [switch]$R53UseIAMRole,
+        [Parameter(ParameterSetName='EnvironmentVars',Mandatory)]
+        [switch]$R53UseEnvironmentVars,
         [Parameter(ValueFromRemainingArguments)]
         $ExtraParams
     )
@@ -319,6 +323,8 @@ function Initialize-R53Config {
         [string]$R53ProfileName,
         [Parameter(ParameterSetName='IAMRole',Mandatory)]
         [switch]$R53UseIAMRole,
+        [Parameter(ParameterSetName='EnvironmentVars',Mandatory)]
+        [switch]$R53UseEnvironmentVars,
         [Parameter(ValueFromRemainingArguments)]
         $ExtraConnectParams
     )
