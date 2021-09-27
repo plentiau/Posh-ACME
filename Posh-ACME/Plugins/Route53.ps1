@@ -425,18 +425,17 @@ function Initialize-R53Config {
                         SecretKey = $env:AWS_SECRET_ACCESS_KEY
                         Token     = $env:AWS_SESSION_TOKEN
                     }
-                    else {
-                        # we just have normal access keys
-                        $script:AwsCredParam = @{
-                            AccessKey = $env:AWS_ACCESS_KEY_ID
-                            SecretKey = $env:AWS_SECRET_ACCESS_KEY
-                        }
+                } 
+                else {
+                    # we just have normal access keys
+                    $script:AwsCredParam = @{
+                        AccessKey = $env:AWS_ACCESS_KEY_ID
+                        SecretKey = $env:AWS_SECRET_ACCESS_KEY
                     }
                 }
             }
         }
     }
-
 }
 
 function Get-AwsHash {
