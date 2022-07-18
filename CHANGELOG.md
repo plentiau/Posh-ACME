@@ -1,3 +1,65 @@
+## 4.14.0 (2022-04-12)
+
+* Added new DNS plugin [Porkbun](https://porkbun.com/) (Thanks @CaiB)
+* Added server shortcuts for Google's new ACME CA, GOOGLE_PROD and GOOGLE_STAGE.
+* Added server shortcuts for SSL.com, SSLCOM_RSA and SSLCOM_ECC.
+* Added `UseAltAccountRefresh` switch to `Set-PAServer` to workaround CAs that don't yet support direct account refreshes such as Google, SSL.com, and DigiCert. (#372) (#394)
+  * New configs should have this set by default for CAs known to need it. But you will need to explicitly set it on any existing configs for these CAs.
+* Added `LifetimeDays` param on `New-PACertificate`, `New-PAOrder`, and `Set-PAOrder` to enable user requested cert lifetimes for ACME CAs that support the feature.
+  * Google's CA is the only free ACME CA known to currently support this and the order lifetime cannot be changed once it is created. Setting a new value on an existing order will only change the lifetime on subsequent renewals.
+* Updated Azure plugin to use the latest stable API version.
+* Updated Azure guide to account for breaking changes in the Az module.
+* Fixed GoDaddy plugin when using it with delegated sub-zones. (#430)
+* Fixed `New-PAAccount` when importing an existing key on CAs that require external account binding.
+* Reduced the number of account refreshes that happen as part of normal operations.
+
+## 4.13.1 (2022-03-14)
+
+* Fixed Loopia plugin after an upstream API change broke it. (Thanks @AlexanderRydberg)
+
+## 4.13.0 (2022-03-07)
+
+* Added new DNS plugin [LeaseWeb](https://www.leaseweb.com/)
+* Simply plugin migrated to v2 of the API. No changes should be necessary for existing users.
+
+## 4.12.0 (2022-01-13)
+
+* The WebRoot plugin now supports multiple paths for the `WRPath` parameter. (#411)
+* ClouDNS plugin error handling was modified so that invalid credential errors are properly surfaced instead of just throwing generic "zone not found" errors. (#414)
+* Fixed a potential bug with `Submit-OrderFinalize` when multiple orders have the same MainDomain property.
+* Fixed `New-PACertificate` not properly updating an existing order with updated order params (#412)
+
+## 4.11.0 (2021-11-24)
+
+* Added [SecretManagement](https://devblogs.microsoft.com/powershell/secretmanagement-and-secretstore-are-generally-available/) support! See [this guide](https://poshac.me/docs/v4/Guides/Using-SecretManagement/) for details.
+* Added new DNS plugins:
+  * [Combell](https://www.combell.com/) (Thanks @stevenvolckaert)
+  * [TotalUptime](https://totaluptime.com/solutions/cloud-dns-service/) (Thanks @CirotheSilver)
+* `Install-PACertificate` and the `-Install` switch on orders will now import associated chain certificates into the Intermediate cert store if they don't already exist. (#397)
+* `New-PAOrder` will now throw an error if the order object returned by the ACME server matches an existing order with a different name. (#401)
+* The progress bar for DNS propagation is now disabled by default unless a POSHACME_SHOW_PROGRESS environment variable is defined. A verbose message will be written once per minute as an alternative. (#402)
+* Added auth token caching to CoreNetworks plugin to avoid getting rate limited. (#403)
+* Fixed ISPConfig plugin throwing Incorrect datetime value errors when adding records (#404)
+* Fixed a bug with `Submit-Renewal -AllAccounts` that would prevent restoring the original active account. (Thanks @markpizz) (#395)
+* Fixed usage example in EasyDns guide. (Thanks @webprofusion-chrisc) (#407)
+
+## 4.10.0 (2021-10-06)
+
+* Added new DNS plugin [CoreNetworks](https://www.core-networks.de/) (Thanks @dwydler)
+* Fix for Regru plugin bug caused by provider API change (#392)
+* Fix Submit-Renewal duplicating orders that have a custom name (#393)
+
+## 4.9.0 (2021-09-21)
+
+* Added new DNS plugin [ISPConfig](https://www.ispconfig.org/)
+* Fixed the DOCean plugin when used with accounts that have more than 20 zones. (#384) (Thanks @Xpyder)
+* Fixed a bug in the DOCean plugin that prevented publishing records against the zone apex.
+* Fixed a bug using `Set-PAOrder -PreferredChain` on an existing but expired order that was recently upgraded from Posh-ACME 3.x.
+* Fixed renewal window calculation for certs that have lifetimes shorter or longer than 90 days. (#382) (Thanks @lookcloser)
+  * Due to the bug, certs with lifetimes longer than 90 days would renew early and certs with lifetimes shorter than 90 days would renew late or potentially not at all. Because the renewal window is calculated and saved at finalization time, the new module version won't fix the value on existing orders. It will only fix future orders/renewals.
+  * If you want to scan for and fix any orders that might have been affected by this bug, you can use the script posted here: https://github.com/rmbolger/Posh-ACME/issues/382#issuecomment-922128237
+* Fixed a benign bug with object serialization in PS 5.1 that was saving the dynamic attributes on server/account/order objects.
+
 ## 4.8.1 (2021-09-12)
 
 * Fixed a bug introduced in 4.7.0 that broke `Set-PAAccount -UseAltPluginEncryption` preventing plugin args for orders from being properly re-encrypted.

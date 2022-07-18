@@ -17,6 +17,8 @@ function New-PAOrder {
         [ValidateScript({Test-ValidPlugin $_ -ThrowOnFail})]
         [string[]]$Plugin,
         [hashtable]$PluginArgs,
+        [ValidateRange(0, 3650)]
+        [int]$LifetimeDays,
         [string[]]$DnsAlias,
         [Parameter(ParameterSetName='FromScratch')]
         [Parameter(ParameterSetName='ImportKey')]
@@ -170,6 +172,16 @@ function New-PAOrder {
         }
 
     }
+
+    # add the requested certificate lifetime if specified
+    if ($LifetimeDays) {
+        $now = [DateTimeOffset]::UtcNow
+        $notBefore = $now.ToString('yyyy-MM-ddTHH:mm:ssZ', [Globalization.CultureInfo]::InvariantCulture)
+        $notAfter = $now.AddDays($LifetimeDays).ToString('yyyy-MM-ddTHH:mm:ssZ', [Globalization.CultureInfo]::InvariantCulture)
+        $payload.notBefore = $notBefore
+        $payload.notAfter = $notAfter
+    }
+
     $payloadJson = $payload | ConvertTo-Json -Depth 5 -Compress
 
     # send the request
@@ -183,6 +195,25 @@ function New-PAOrder {
 
     # fix any dates that may have been parsed by PSCore's JSON serializer
     $order.expires = Repair-ISODate $order.expires
+
+    # add the location from the header
+    if ($response.Headers.ContainsKey('Location')) {
+        $location = $response.Headers['Location'] | Select-Object -First 1
+        Write-Debug "Adding location $location"
+        $order | Add-Member -MemberType NoteProperty -Name 'location' -Value $location
+    } else {
+        try { throw 'No Location header found in newOrder output' }
+        catch { $PSCmdlet.ThrowTerminatingError($_) }
+    }
+
+    # Make sure the returned order isn't a duplicate of one we already have a copy
+    # of locally. This can happen with Let's Encrypt when an existing order with the
+    # same identifiers is still in the 'pending' or 'ready' state.
+    $orderConflict = Get-PAOrder -List | Where-Object { $_.location -eq $location -and $_.Name -ne $Name }
+    if ($orderConflict) {
+        try { throw "ACME Server returned duplicate order details that match existing local order '$($orderConflict.Name)'" }
+        catch { $PSCmdlet.ThrowTerminatingError($_) }
+    }
 
     # Per https://tools.ietf.org/html/rfc8555#section-7.1.3
     # In the returned order object, there is no guarantee that the list of identifiers
@@ -231,6 +262,7 @@ function New-PAOrder {
         UseSerialValidation = $UseSerialValidation.IsPresent
         PreferredChain      = $PreferredChain
         AlwaysNewKey        = $AlwaysNewKey.IsPresent
+        LifetimeDays        = $null
     }
 
     # override AlwaysNewKey if they're importing the private key
@@ -256,15 +288,8 @@ function New-PAOrder {
     if ('DnsAlias' -in $PSBoundParameters.Keys) {
         $order.DnsAlias = @($DnsAlias)
     }
-
-    # add the location from the header
-    if ($response.Headers.ContainsKey('Location')) {
-        $location = $response.Headers['Location'] | Select-Object -First 1
-        Write-Debug "Adding location $location"
-        $order | Add-Member -MemberType NoteProperty -Name 'location' -Value $location
-    } else {
-        try { throw 'No Location header found in newOrder output' }
-        catch { $PSCmdlet.ThrowTerminatingError($_) }
+    if ('LifetimeDays' -in $PSBoundParameters.Keys) {
+        $order.LifetimeDays = $LifetimeDays
     }
 
     # add the Name and Folder properties

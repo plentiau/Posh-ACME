@@ -20,6 +20,9 @@ function Set-PAOrder {
         [Parameter(ParameterSetName='Edit')]
         [hashtable]$PluginArgs,
         [Parameter(ParameterSetName='Edit')]
+        [ValidateRange(0, 3650)]
+        [int]$LifetimeDays,
+        [Parameter(ParameterSetName='Edit')]
         [string[]]$DnsAlias,
         [Parameter(ParameterSetName='Edit')]
         [ValidateScript({Test-ValidFriendlyName $_ -ThrowOnFail})]
@@ -205,6 +208,12 @@ function Set-PAOrder {
                 $saveChanges = $true
             }
 
+            if ('LifetimeDays' -in $psbKeys -and $LifetimeDays -ne $order.LifetimeDays) {
+                Write-Verbose "Setting LifetimeDays to $LifetimeDays"
+                $order.LifetimeDays = $LifetimeDays
+                $saveChanges = $true
+            }
+
             if ($saveChanges) {
                 Write-Verbose "Saving order changes"
                 Update-PAOrder $order -SaveOnly
@@ -244,9 +253,11 @@ function Set-PAOrder {
 
             # update the current order ref if necessary
             $curOrderFile = (Join-Path $acct.Folder 'current-order.txt')
-            if (($modCurrentOrder -or -not $NoSwitch) -and $order.Name -ne (Get-Content $curOrderFile -EA Ignore)) {
-                Write-Debug "Updating current-order.txt"
-                $order.Name | Out-File $curOrderFile -Force -EA Stop
+            if ($modCurrentOrder -or -not $NoSwitch) {
+                if ($order.Name -ne (Get-Content $curOrderFile -EA Ignore)) {
+                    Write-Debug "Updating current-order.txt"
+                    $order.Name | Out-File $curOrderFile -Force -EA Stop
+                }
                 $script:Order = $order
             }
 

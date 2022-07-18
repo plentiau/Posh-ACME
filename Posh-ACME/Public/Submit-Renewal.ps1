@@ -85,6 +85,7 @@ function Submit-Renewal {
                 }
 
                 # common params
+                $certParams.Name                = $order.Name
                 $certParams.Plugin              = $order.Plugin
                 $certParams.PluginArgs          = $order | Get-PAPluginArgs
                 $certParams.DnsAlias            = $order.DnsAlias
@@ -93,6 +94,8 @@ function Submit-Renewal {
                 $certParams.DnsSleep            = $order.DnsSleep
                 $certParams.ValidationTimeout   = $order.ValidationTimeout
                 $certParams.PreferredChain      = $order.PreferredChain
+
+                if ($order.LifetimeDays -gt 0) { $certParams.LifetimeDays = $order.LifetimeDays }
 
                 # now we just have to request a new cert using all of the old parameters
                 New-PACertificate @certParams
@@ -156,7 +159,7 @@ function Submit-Renewal {
                 }
 
                 # restore the old current account
-                if ($oldAcct) { $oldAccount | Set-PAAccount }
+                if ($oldAcct) { $oldAcct | Set-PAAccount }
 
                 break
             }

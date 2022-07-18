@@ -22,7 +22,9 @@ function Import-PluginDetail {
         'BlueCat'           = [pscustomobject]@{PSTypeName = 'PoshACME.PAPluginDetail'; ChallengeType = 'dns-01'; Path = ''; Name = 'BlueCat'}
         'Cloudflare'        = [pscustomobject]@{PSTypeName = 'PoshACME.PAPluginDetail'; ChallengeType = 'dns-01'; Path = ''; Name = 'Cloudflare'}
         'ClouDNS'           = [pscustomobject]@{PSTypeName = 'PoshACME.PAPluginDetail'; ChallengeType = 'dns-01'; Path = ''; Name = 'ClouDNS'}
+        'Combell'           = [pscustomobject]@{PSTypeName = 'PoshACME.PAPluginDetail'; ChallengeType = 'dns-01'; Path = ''; Name = 'Combell'}
         'Constellix'        = [pscustomobject]@{PSTypeName = 'PoshACME.PAPluginDetail'; ChallengeType = 'dns-01'; Path = ''; Name = 'Constellix'}
+        'CoreNetworks'      = [pscustomobject]@{PSTypeName = 'PoshACME.PAPluginDetail'; ChallengeType = 'dns-01'; Path = ''; Name = 'CoreNetworks'}
         'DeSEC'             = [pscustomobject]@{PSTypeName = 'PoshACME.PAPluginDetail'; ChallengeType = 'dns-01'; Path = ''; Name = 'DeSEC'}
         'DMEasy'            = [pscustomobject]@{PSTypeName = 'PoshACME.PAPluginDetail'; ChallengeType = 'dns-01'; Path = ''; Name = 'DMEasy'}
         'DNSimple'          = [pscustomobject]@{PSTypeName = 'PoshACME.PAPluginDetail'; ChallengeType = 'dns-01'; Path = ''; Name = 'DNSimple'}
@@ -45,6 +47,8 @@ function Import-PluginDetail {
         'IBMSoftLayer'      = [pscustomobject]@{PSTypeName = 'PoshACME.PAPluginDetail'; ChallengeType = 'dns-01'; Path = ''; Name = 'IBMSoftLayer'}
         'Infoblox'          = [pscustomobject]@{PSTypeName = 'PoshACME.PAPluginDetail'; ChallengeType = 'dns-01'; Path = ''; Name = 'Infoblox'}
         'Infomaniak'        = [pscustomobject]@{PSTypeName = 'PoshACME.PAPluginDetail'; ChallengeType = 'dns-01'; Path = ''; Name = 'Infomaniak'}
+        'ISPConfig'         = [pscustomobject]@{PSTypeName = 'PoshACME.PAPluginDetail'; ChallengeType = 'dns-01'; Path = ''; Name = 'ISPConfig'}
+        'LeaseWeb'          = [pscustomobject]@{PSTypeName = 'PoshACME.PAPluginDetail'; ChallengeType = 'dns-01'; Path = ''; Name = 'LeaseWeb'}
         'Linode'            = [pscustomobject]@{PSTypeName = 'PoshACME.PAPluginDetail'; ChallengeType = 'dns-01'; Path = ''; Name = 'Linode'}
         'Loopia'            = [pscustomobject]@{PSTypeName = 'PoshACME.PAPluginDetail'; ChallengeType = 'dns-01'; Path = ''; Name = 'Loopia'}
         'LuaDns'            = [pscustomobject]@{PSTypeName = 'PoshACME.PAPluginDetail'; ChallengeType = 'dns-01'; Path = ''; Name = 'LuaDns'}
@@ -55,6 +59,7 @@ function Import-PluginDetail {
         'NS1'               = [pscustomobject]@{PSTypeName = 'PoshACME.PAPluginDetail'; ChallengeType = 'dns-01'; Path = ''; Name = 'NS1'}
         'OVH'               = [pscustomobject]@{PSTypeName = 'PoshACME.PAPluginDetail'; ChallengeType = 'dns-01'; Path = ''; Name = 'OVH'}
         'PointDNS'          = [pscustomobject]@{PSTypeName = 'PoshACME.PAPluginDetail'; ChallengeType = 'dns-01'; Path = ''; Name = 'PointDNS'}
+        'Porkbun'           = [pscustomobject]@{PSTypeName = 'PoshACME.PAPluginDetail'; ChallengeType = 'dns-01'; Path = ''; Name = 'Porkbun'}
         'Rackspace'         = [pscustomobject]@{PSTypeName = 'PoshACME.PAPluginDetail'; ChallengeType = 'dns-01'; Path = ''; Name = 'Rackspace'}
         'Regru'             = [pscustomobject]@{PSTypeName = 'PoshACME.PAPluginDetail'; ChallengeType = 'dns-01'; Path = ''; Name = 'Regru'}
         'RFC2136'           = [pscustomobject]@{PSTypeName = 'PoshACME.PAPluginDetail'; ChallengeType = 'dns-01'; Path = ''; Name = 'RFC2136'}
@@ -62,6 +67,7 @@ function Import-PluginDetail {
         'Selectel'          = [pscustomobject]@{PSTypeName = 'PoshACME.PAPluginDetail'; ChallengeType = 'dns-01'; Path = ''; Name = 'Selectel'}
         'SimpleDNSPlus'     = [pscustomobject]@{PSTypeName = 'PoshACME.PAPluginDetail'; ChallengeType = 'dns-01'; Path = ''; Name = 'SimpleDNSPlus'}
         'Simply'            = [pscustomobject]@{PSTypeName = 'PoshACME.PAPluginDetail'; ChallengeType = 'dns-01'; Path = ''; Name = 'Simply'}
+        'TotalUptime'       = [pscustomobject]@{PSTypeName = 'PoshACME.PAPluginDetail'; ChallengeType = 'dns-01'; Path = ''; Name = 'TotalUptime'}
         'UKFast'            = [pscustomobject]@{PSTypeName = 'PoshACME.PAPluginDetail'; ChallengeType = 'dns-01'; Path = ''; Name = 'UKFast'}
         'WebRoot'           = [pscustomobject]@{PSTypeName = 'PoshACME.PAPluginDetail'; ChallengeType = 'http-01'; Path = ''; Name = 'WebRoot'}
         'WebSelfHost'       = [pscustomobject]@{PSTypeName = 'PoshACME.PAPluginDetail'; ChallengeType = 'http-01'; Path = ''; Name = 'WebSelfHost'}

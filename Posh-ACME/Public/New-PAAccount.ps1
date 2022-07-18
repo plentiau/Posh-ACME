@@ -34,7 +34,7 @@ function New-PAAccount {
 
     # make sure the external account binding parameters were specified if this ACME
     # server requires them.
-    if ($server.meta -and $server.meta.externalAccountRequired -and
+    if (-not $OnlyReturnExisting -and $server.meta -and $server.meta.externalAccountRequired -and
         (-not $ExtAcctKID -or -not $ExtAcctHMACKey))
     {
         try { throw "The current ACME server requires external account credentials to create a new ACME account. Please run New-PAAccount with the ExtAcctKID and ExtAcctHMACKey parameters." }
@@ -199,11 +199,6 @@ function New-PAAccount {
         Folder = Join-Path $server.Folder $ID
     }
 
-    # add a new AES key if specified
-    if ($UseAltPluginEncryption) {
-        $acct.sskey = New-AesKey
-    }
-
     # save it to memory and disk
     $acct.id | Out-File (Join-Path $server.Folder 'current-account.txt') -Force -EA Stop
     $script:Acct = $acct
@@ -213,6 +208,12 @@ function New-PAAccount {
     $acct | Select-Object -Property * -ExcludeProperty id,Folder |
         ConvertTo-Json -Depth 5 |
         Out-File (Join-Path $acct.Folder 'acct.json') -Force -EA Stop
+
+    # add a new AES key if specified
+    if ($UseAltPluginEncryption) {
+        $acct | Set-AltPluginEncryption -Enable
+        $acct = Get-PAAccount
+    }
 
     return $acct
 }

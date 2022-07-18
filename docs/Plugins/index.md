@@ -23,7 +23,9 @@ Beget | [Beget.com](https://beget.com) | [Usage Guide](Beget.md) | :white_check_
 BlueCat | [BlueCat Address Manager](https://www.bluecatnetworks.com/platform/management/bluecat-address-manager/) | [Usage Guide](BlueCat.md) | :x:
 Cloudflare | [Cloudflare DNS](https://www.cloudflare.com/dns) | [Usage Guide](Cloudflare.md) | :white_check_mark:
 ClouDNS | [ClouDNS](https://www.cloudns.net/aff/id/224075/) | [Usage Guide](ClouDNS.md) | :white_check_mark:
+Combell | [Combell](https://www.combell.com/) | [Usage Guide](Combell.md) | :white_check_mark:
 Constellix | [Constellix](https://constellix.com/) | [Usage Guide](Constellix.md) | :white_check_mark:
+CoreNetworks | [Core Networks](https://www.core-networks.de/) | [Usage Guide](CoreNetworks.md) | :white_check_mark:
 DeSEC | [DeSEC DNS](https://desec.io/#!/en/product/dnshosting) | [Usage Guide](DeSEC.md) | :white_check_mark:
 DMEasy | [DNS Made Easy](https://dnsmadeeasy.com/) | [Usage Guide](DMEasy.md) | :white_check_mark:
 DNSimple | [DNSimple DNS](https://dnsimple.com/r/c9b80a2f227e49) | [Usage Guide](DNSimple.md) | :white_check_mark:
@@ -46,6 +48,8 @@ HurricaneElectric | [Hurricane Electric DNS](https://dns.he.net/) | [Usage Guide
 IBMSoftLayer | [IBM Cloud DNS](https://www.ibm.com/cloud/dns) | [Usage Guide](IBMSoftLayer.md) | :white_check_mark:
 Infoblox | [Infoblox NIOS](https://www.infoblox.com) | [Usage Guide](Infoblox.md) | :white_check_mark:
 Infomaniak | [Infomaniak](https://www.infomaniak.com) | [Usage Guide](Infomaniak.md) | :white_check_mark:
+ISPConfig | [ISPConfig](https://www.ispconfig.org/) | [Usage Guide](ISPConfig.md) | :white_check_mark:
+LeaseWeb | [LeaseWeb](https://www.leaseweb.com/) | [Usage Guide](LeaseWeb.md) | :white_check_mark:
 Linode | [Linode DNS](https://www.linode.com/?r=4dfd67cf6f1e384ce626f2943620186344bb2ccf) | [Usage Guide](Linode.md) | :white_check_mark:
 Loopia | [LoopiaDNS](https://www.loopia.com/loopiadns/) | [Usage Guide](Loopia.md) | :white_check_mark:
 LuaDns | [LuaDns](https://www.luadns.com) | [Usage Guide](LuaDns.md) | :white_check_mark:
@@ -55,6 +59,7 @@ NameCom | [Name.com](https://www.name.com/) | [Usage Guide](NameCom.md) | :white
 NS1 | [NS1 DNS](https://ns1.com) | [Usage Guide](NS1.md) | :white_check_mark:
 OVH | [OVH.com](https://www.ovh.com) | [Usage Guide](OVH.md) | :white_check_mark:
 PointDNS | [PointDNS](https://pointhq.com/) | [Usage Guide](PointDNS.md) | :white_check_mark:
+Porkbun | [Porkbun](https://porkbun.com/) | [Usage Guide](Porkbun.md) | :white_check_mark:
 Rackspace | [Rackspace Cloud DNS](https://www.rackspace.com/cloud/dns) | [Usage Guide](Rackspace.md) | :white_check_mark:
 Regru | [Reg.ru](https://reg.ru/) and [Reg.com](https://reg.com/) | [Usage Guide](Regru.md) | :white_check_mark:
 RFC2136 | [RFC 2136](https://tools.ietf.org/html/rfc2136) | [Usage Guide](RFC2136.md) | :white_check_mark:
@@ -62,6 +67,7 @@ Route53 | [AWS Route53](https://aws.amazon.com/route53/) | [Usage Guide](Route53
 Selectel | [Selectel.ru](https://selectel.ru/en/services/additional/dns/) | [Usage Guide](Selectel.md) | :white_check_mark:
 SimpleDNSPlus | [Simple DNS Plus](https://simpledns.com/) | [Usage Guide](SimpleDNSPlus.md) | :white_check_mark:
 Simply | [Simply](https://www.simply.com/) (formerly UnoEuro) | [Usage Guide](Simply.md) | :white_check_mark:
+TotalUptime | [TotalUptime](https://totaluptime.com/solutions/cloud-dns-service/) | [Usage Guide](TotalUptime.md) | :white_check_mark:
 UKFast | [UKFast](https://ukfast.co.uk) | [Usage Guide](UKFast.md) | :white_check_mark:
 Windows | [Microsoft Windows DNS](https://www.microsoft.com/en-us/cloud-platform/windows-server) | [Usage Guide](Windows.md) | Windows-Only<sup>[1](#windows)</sup>
 Yandex | [Yandex DNS](https://connect.yandex.com/) | [Usage Guide](Yandex.md) | :white_check_mark:

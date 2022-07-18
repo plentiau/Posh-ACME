@@ -45,9 +45,13 @@ $script:WellKnownDirs = @{
     BUYPASS_PROD = 'https://api.buypass.com/acme/directory'
     BUYPASS_TEST = 'https://api.test4.buypass.no/acme/directory'
     ZEROSSL_PROD = 'https://acme.zerossl.com/v2/DV90'
+    GOOGLE_PROD = 'https://dv.acme-v02.api.pki.goog/directory'
+    GOOGLE_STAGE = 'https://dv.acme-v02.test-api.pki.goog/directory'
+    SSLCOM_RSA = 'https://acme.ssl.com/sslcom-dv-rsa'
+    SSLCOM_ECC = 'https://acme.ssl.com/sslcom-dv-ecc'
 }
 $script:HEADER_NONCE = 'Replay-Nonce'
-$script:USER_AGENT = "Posh-ACME/4.8.1 PowerShell/$($PSVersionTable.PSVersion)"
+$script:USER_AGENT = "Posh-ACME/4.14.0 PowerShell/$($PSVersionTable.PSVersion)"
 $script:COMMON_HEADERS = @{'Accept-Language'='en-us,en;q=0.5'}
 
 # Add an appropriate platform to the user-agent if possible
